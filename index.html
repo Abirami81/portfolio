@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abirami M | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --bg:#0f172a;
+  --text:#ffffff;
+  --primary:#6366f1;
+  --glass:rgba(255,255,255,0.08);
+}
+
+.light{
+  --bg:#f8fafc;
+  --text:#0f172a;
+  --glass:rgba(0,0,0,0.05);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+  font-family:'Inter',sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:0.4s ease;
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  width:100%;
+  padding:20px 8%;
+  display:flex;
+  justify-content:space-between;
+  backdrop-filter:blur(10px);
+  z-index:100;
+}
+
+nav ul{
+  display:flex;
+  gap:20px;
+  list-style:none;
+}
+
+nav a{
+  text-decoration:none;
+  color:var(--text);
+  font-weight:500;
+}
+
+nav a.active {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.toggle{
+  cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 8%;
+  gap:50px;
+}
+
+.hero-text h1{
+  font-size:60px;
+  font-weight:900;
+}
+
+.hero-text span{
+  color:var(--primary);
+}
+
+.hero-text p{
+  margin:20px 0;
+  max-width:500px;
+  opacity:0.8;
+}
+
+.btn{
+  display:inline-block;
+  text-decoration: none;
+  padding:12px 30px;
+  border:none;
+  border-radius:30px;
+  background:var(--primary);
+  color:#fff;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+}
+
+/* SQUARE IMAGE */
+
+.square{
+  width:350px;
+  height:350px;
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  border-radius:25px;
+  padding:15px;
+  box-shadow:0 30px 60px rgba(0,0,0,0.4);
+  animation:float 4s ease-in-out infinite;
+}
+
+.square img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 10%;
+  border-radius:20px;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
+}
+
+/* SECTION */
+
+section{
+  padding:100px 8%;
+}
+
+.section-title{
+  text-align:center;
+  font-size:40px;
+  margin-bottom:60px;
+}
+
+/* PROJECTS */
+
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+
+.project-card{
+  background:var(--glass);
+  padding:20px;
+  border-radius:20px;
+  transition:0.4s;
+}
+
+.project-card:hover{
+  transform:translateY(-10px);
+  background:var(--primary);
+  color:#fff;
+}
+
+/* SKILLS SECTION */
+
+.skills-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:30px;
+  max-width:1000px;
+  margin:auto;
+}
+
+.skills-box{
+  background:var(--glass);
+  padding:30px;
+  border-radius:20px;
+  transition:0.4s;
+}
+
+.skills-box:hover{
+  transform:translateY(-10px);
+  background:var(--primary);
+  color:#fff;
+}
+
+/* Progress Bars */
+
+.skill{
+  margin:20px 0;
+}
+
+.skill p{
+  margin-bottom:8px;
+  font-weight:500;
+}
+
+.progress{
+  width:100%;
+  height:8px;
+  background:rgba(255,255,255,0.2);
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.progress div{
+  height:100%;
+  background:var(--primary);
+  border-radius:10px;
+  transition:0.6s;
+}
+
+/* Soft Skills */
+.soft-skills{
+  margin-top:20px;
+  padding-left:20px;
+  list-style:disc;
+}
+
+.soft-skills li{
+  margin:12px 0;
+  gin-top:20px;
+}
+
+
+.soft-skills li{
+  margin:12px 0;
+  padding-left:10px;
+}
+
+/* EDUCATION + EXPERIENCE */
+
+.timeline{
+  max-width:800px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+}
+
+.timeline-item{
+  background:var(--glass);
+  padding:25px;
+  border-radius:15px;
+  transition:0.3s;
+}
+
+.timeline-item:hover{
+  transform:translateY(-10px);
+  background:var(--primary);
+  color:#fff;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  visibility:hidden;
+  transition:0.4s;
+  z-index:200;
+}
+
+.modal.active{
+  opacity:1;
+  visibility:visible;
+}
+
+.modal-content{
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  padding:40px;
+  border-radius:25px;
+  max-width:600px;
+  width:90%;
+  box-shadow:0 30px 60px rgba(0,0,0,0.4);
+  transform:scale(0.8);
+  transition:0.4s;
+}
+
+.modal.active .modal-content{
+  transform:scale(1);
+}
+
+.close-btn{
+  position:absolute;
+  top:20px;
+  right:30px;
+  cursor:pointer;
+  font-size:20px;
+}
+
+.modal-content h2{
+  margin-bottom:20px;
+}
+
+/* CONTACT */
+/* Contact Info */
+
+/* CONTACT GRID */
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+  max-width:900px;
+  margin:auto;
+}
+
+.contact-card{
+  background:var(--glass);
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  transition:0.4s;
+}
+
+.contact-card:hover{
+  transform:translateY(-10px);
+  background:var(--primary);
+  color:#fff;
+}
+
+.contact-card a{
+  display:block;
+  margin-top:10px;
+  text-decoration:none;
+  color:var(--primary);
+  font-weight:500;
+  word-break:break-all;
+}
+
+.contact-card:hover a{
+  color:#fff;
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:20px;
+  opacity:0.7;
+}
+
+/* Scroll animation */
+
+.hidden{
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s;
+}
+
+.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+  .hero{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .hero-text h1{
+    font-size:40px;
+  }
+
+  .square{
+    width:280px;
+    height:280px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <h2>Abirami M</h2>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="toggle">🌙</div>
+</nav>
+
+<section id="about" class="hero">
+  <div class="hero-text">
+    <h1>Hi, I'm <span>Abirami </span></h1>
+    <p>I’m a passionate AI student specializing in machine learning, computer vision, and simulation projects.
+       I love building modular workflows, integrating cloud solutions, and designing responsive web interfaces</p>
+       <br>
+    <a href="resume.pdf" download class="btn">
+  Download Resume
+</a>
+  </div>
+
+  <div class="square">
+    <img src="D:\po1\IMG-20241118-WA0033 copy.jpg" alt="Your Photo">
+  </div>
+</section>
+
+
+
+<section id="projects">
+  <h2 class="section-title hidden">Projects</h2>
+
+  <div class="projects">
+
+    <!-- Project 1 -->
+    <div class="project-card hidden" onclick="openModal()">
+      <h3>Intellipark Mapview</h3>
+      <p><h5>Click to know more</h5></p>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card hidden" onclick="openModal2()">
+      <h3>Water Quality Monitoring System</h3>
+      <p><h5>Click to know more</h5></p>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card hidden" onclick="openModal3()">
+      <h3>Cancer Cell Detection</h3>
+      <p><h5>Click to know more</h5></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Intellipark Modal -->
+<div id="projectModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">✖</span>
+
+    <h2>Intellipark Mapview</h2>
+
+    <p>
+      Intellipark Mapview combines grid-based pathfinding with cloud integration. 
+      It automatically assigns drivers to available parking slots, computes the shortest path using 
+      the A* algorithm, and visually highlights the route in green on a parking layout. 
+      The generated layout is uploaded to the cloud, and a QR code is produced 
+      so drivers can scan it and view the personalized parking map on their phones. 
+      This ensures efficient slot allocation, easy navigation, and a seamless user experience.
+    </p>
+<br>
+    <p>
+       Key Features:<br>
+      • Grid-Based Parking Layout  <br>
+      • A* Pathfinding Algorithm  <br>
+      • Sequential Slot Assignment <br>   
+      • Visual Path Highlighting   <br>
+      • Cloud Integration (ImgBB/Catbox)<br>
+      • QR Code Generation  
+    </p>
+
+    <br>
+    <a href="https://github.com/Abirami81/intellipark-mapview" target="_blank">
+      View on GitHub
+    </a>
+  </div>
+</div>
+
+
+<!-- Water Quality Modal -->
+<div id="projectModal2" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal2()">✖</span>
+
+    <h2>Water Quality Monitoring System</h2>
+
+    <p>
+      This project introduces a Machine Learning–based water quality monitoring system that 
+      evaluates purity using parameters like pH, TDS, turbidity, and temperature. By applying
+       Bayesian Change Point Detection (BCPD) on a large dataset, the system achieves 
+       near-perfect accuracy in predicting whether water samples meet WHO safety standards. 
+       It also integrates real-time alerts via Gmail and voice notifications, offering a 
+       cost-effective and automated solution for continuous water quality monitoring.
+    </p>
+<br>
+    <p>
+      Key Features:<br>
+      • Automated Monitoring<br>
+      • BCPD Model<br>
+      • Multi-parameter Analysis <br>
+      • Performance Evaluation <br>
+      • WHO Standards Compliance <br>
+      • Smart Alerts <br>
+    </p>
+
+    <br>
+   
+  </div>
+</div>
+
+<!-- Water Quality Modal -->
+<div id="projectModal3" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal3()">✖</span>
+
+    <h2>Caner Cell Detection</h2>
+
+    <p>
+      This project presents an intelligent cancer cell detection system that leverages
+       Convolutional Neural Networks (CNN) and traditional Machine Learning algorithms to 
+       accurately differentiate between cancerous and non-cancerous cells using microscopic 
+       image analysis.The model analyzes histopathological images and identifies 
+       abnormal cell structures based on color variations, texture patterns, and 
+       morphological features. By utilizing color differentiation techniques, the system 
+       enhances classification accuracy and supports early-stage cancer diagnosis.
+
+    </p>
+<br>
+    <p>
+      Key Features:<br>
+      • CNN-Based Image Classification<br>
+      • Color Differentiation Analysis<br>
+      • Machine Learning Integration <br>
+      • Feature Extraction <br>
+      • Performance Evaluation Metrics <br>
+      • Automated Detection System <br>
+    </p>
+
+    <br>
+   
+  </div>
+</div>
+
+
+
+<section id="education">
+  <h2 class="section-title hidden">Education</h2>
+  <div class="timeline">
+    <div class="timeline-item hidden">
+      <h3>Higher Secondary</h3>
+      <p>N V K S Senior Secondary School, Attoor | 2019 - 2020 | 95.6%</p>
+    </div>
+  </div>
+  <br>
+  <div class="timeline">
+    <div class="timeline-item hidden">
+      <h3>Senior Secondary</h3>
+      <p>N V K S Senior Secondary School, Attoor | 2020 - 2022 | 91.2%</p>
+    </div>
+  </div>
+  <br>
+  <div class="timeline">
+    <div class="timeline-item hidden">
+      <h3>Bachelor of Technology</h3>
+      <p>St.Xavier's Catholic College of Engineering | 2022 - 2026 | CGPA : 9.09</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2 class="section-title hidden">Skills</h2>
+
+  <div class="skills-container">
+    
+    <!-- Technical Skills -->
+    <div class="skills-box hidden">
+      <h3>Technical Skills</h3>
+
+      <div class="skill">
+        <p>Python</p>
+        <div class="progress"><div style="width:70%"></div></div>
+      </div>
+
+      <div class="skill">
+        <p>Java</p>
+        <div class="progress"><div style="width:80%"></div></div>
+      </div>
+
+      <div class="skill">
+        <p>Flutter</p>
+        <div class="progress"><div style="width:60%"></div></div>
+      </div>
+
+      <div class="skill">
+        <p>HTML / CSS</p>
+        <div class="progress"><div style="width:80%"></div></div>
+      </div>
+
+      <div class="skill">
+        <p>SAP</p>
+        <div class="progress"><div style="width:40%"></div></div>
+      </div>
+    </div>
+
+    <!-- Soft Skills -->
+    <div class="skills-box hidden">
+      <h3>Soft Skills</h3>
+
+      <ul class="soft-skills">
+        <li>Problem Solving</li>
+        <li>Communication</li>
+        <li>Team Collaboration</li>
+        <li>Leadership</li>
+        <li>Time Management</li>
+        <li>Adaptability</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="experience">
+  <h2 class="section-title hidden">Experience</h2>
+  <div class="timeline">
+    <div class="timeline-item hidden">
+      <h3>Full stack development intern</h3>
+      <p>Flutterfrog Solutions , Vadasery , Nagercoil | Feb 2023 - Aug 2023</p>
+      <p>Developing a commercial app for mobile and desktop.
+Connecting frontend and the database using flutter and firebase. Using
+the repo in github for the project.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2 class="section-title hidden">Contact Me</h2>
+
+  <div class="contact-grid">
+
+    <!-- Phone -->
+    <div class="contact-card hidden">
+      <h3>📞 Phone</h3>
+      <a href="tel:+916379750811">+91 63797 50811</a>
+    </div>
+
+    <!-- Email -->
+    <div class="contact-card hidden">
+      <h3>✉ Email</h3>
+      <a href="mailto:abiramimurali058@gmail.com">abiramimurali058@gmail.com</a>
+    </div>
+
+    <!-- GitHub -->
+    <div class="contact-card hidden">
+      <h3>💻 GitHub</h3>
+      <a href="https://github.com/Abirami81" target="_blank">
+        github.com/Abirami81
+      </a>
+    </div>
+
+    <!-- LinkedIn -->
+    <div class="contact-card hidden">
+      <h3>💼 LinkedIn</h3>
+      <a href="https://www.linkedin.com/in/abirami-1811r/" target="_blank">
+        linkedin.com/in/abirami_m
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 Abirami M | All Rights Reserved
+</footer>
+
+<script>
+
+// Dark mode toggle
+const toggle = document.querySelector('.toggle');
+toggle.onclick = () => {
+  document.body.classList.toggle('light');
+  toggle.textContent = document.body.classList.contains('light') ? "🌞" : "🌙";
+};
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+document.querySelectorAll('.hidden').forEach(el=>{
+  observer.observe(el);
+});
+
+function openModal(){
+  document.getElementById('projectModal').classList.add('active');
+}
+
+function closeModal(){
+  document.getElementById('projectModal').classList.remove('active');
+}
+
+function openModal2(){
+  document.getElementById('projectModal2').classList.add('active');
+}
+
+function closeModal2(){
+  document.getElementById('projectModal2').classList.remove('active');
+}
+
+function openModal3(){
+  document.getElementById('projectModal3').classList.add('active');
+}
+
+function closeModal3(){
+  document.getElementById('projectModal3').classList.remove('active');
+}
+
+window.onclick = function(e){
+  const modal1 = document.getElementById('projectModal');
+  const modal2 = document.getElementById('projectModal2');
+  const modal3 = document.getElementById('projectModal3');
+
+  if(e.target === modal1){
+    modal1.classList.remove('active');
+  }
+
+  if(e.target === modal2){
+    modal2.classList.remove('active');
+  }
+
+  
+  if(e.target === modal3){
+    modal2.classList.remove('active');
+  }
+}
+
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 150;
+    const sectionHeight = section.clientHeight;
+
+    if (pageYOffset >= sectionTop) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+});
+
+</script>
+
+</body>
+</html>
